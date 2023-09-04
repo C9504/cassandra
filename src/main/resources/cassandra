@@ -1,0 +1,17 @@
+-- Create a keyspace
+CREATE KEYSPACE IF NOT EXISTS idtolu WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : '2' };
+
+-- Create a table
+CREATE TABLE IF NOT EXISTS idtolu.fruit (
+name text PRIMARY KEY,
+description text
+);
+
+-- Insert some data
+INSERT INTO idtolu.fruit(name, description)VALUES ('Mango', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(name, description)VALUES ('Piña', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(name, description)VALUES ('Maracuya', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(name, description)VALUES ('Guayaba', 'Fruta del Campo');
+
+-- get some data
+SELECT * FROM idtolu.fruit;
