@@ -3,15 +3,16 @@ CREATE KEYSPACE IF NOT EXISTS idtolu WITH REPLICATION = { 'class' : 'SimpleStrat
 
 -- Create a table
 CREATE TABLE IF NOT EXISTS idtolu.fruit (
-name text PRIMARY KEY,
+name UUID PRIMARY KEY,
+name text,
 description text
 );
 
 -- Insert some data
-INSERT INTO idtolu.fruit(name, description)VALUES ('Mango', 'Fruta del Campo');
-INSERT INTO idtolu.fruit(name, description)VALUES ('Piña', 'Fruta del Campo');
-INSERT INTO idtolu.fruit(name, description)VALUES ('Maracuya', 'Fruta del Campo');
-INSERT INTO idtolu.fruit(name, description)VALUES ('Guayaba', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(id, name, description)VALUES (uuid(), 'Mango', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(id, name, description)VALUES (uuid(), 'Piña', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(id, name, description)VALUES (uuid(), 'Maracuya', 'Fruta del Campo');
+INSERT INTO idtolu.fruit(id, name, description)VALUES (uuid(), 'Guayaba', 'Fruta del Campo');
 
 -- get some data
 SELECT * FROM idtolu.fruit;

@@ -1,6 +1,7 @@
 package resources;
 
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import entities.Fruit;
 import entities.FruitDto;
 import jakarta.inject.Inject;
@@ -30,11 +31,19 @@ public class FruitResource {
         fruitService.save(convertFromDto(fruit));
     }
 
+    @GET
+    @Path("/{name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<FruitDto> getFruit(@PathParam("name") String name) {
+        return fruitService.getByName(name).stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+
     private FruitDto convertToDto(Fruit fruit) {
         return new FruitDto(fruit.getId(), fruit.getName(), fruit.getDescription());
     }
 
     private Fruit convertFromDto(FruitDto fruitDto) {
-        return new Fruit(fruitDto.getId(), fruitDto.getName(), fruitDto.getDescription());
+        return new Fruit(Uuids.random(), fruitDto.getName(), fruitDto.getDescription());
     }
 }
